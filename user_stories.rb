@@ -5,6 +5,6 @@
 # Draw a diagram that shows how your Objects will use Messages to communicate with one another
 
 Object          || Messages
-person          || use_a_bike
+person          || 
 docking_station || release_a_bike
 bike            || is_bike_working

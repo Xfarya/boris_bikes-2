@@ -1,9 +1,5 @@
-# class DockingStation
+class DockingStation
 
-# end
-# # def dockingstation
-# # DockingStation.new
-# # end
-
+end
 
 

@@ -15,4 +15,10 @@ describe DockingStation do
       expect(DockingStation.new.dock_bike(bike)).to eq(bike)
     end
 
+    it 'adds a bike when dock_bike' do
+      DockingStation.new.dock_bike(Bike.new) 
+      expect(bikes.pop).to eq bike
+
+    end
+
 end

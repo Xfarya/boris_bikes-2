@@ -10,7 +10,7 @@ describe DockingStation do
       expect(docking_station.release_bike).to respond_to :working?
     end
 
-    it { is_expected.to respond_to(:dock_bike).with(1).argument }
+    it { is_expected.to respond_to(:dock_bike).with(2).argument }
 
     it { is_expected.to respond_to(:bikes) }
 
@@ -45,5 +45,13 @@ describe DockingStation do
     p docking_station.capacity
       expect(docking_station.dock_bike Bike.new).to raise_error "Docking station is full" if docking_station.bikes.length >= docking_station.capacity
     end
+
+    it "should not release broken bikes" do
+      docking_station = DockingStation.new
+      bike1 = Bike.new
+      docking_station.dock_bike(bike1, "broken")
+      expect(docking_station.broken_bikes.last).to eq(bike1)
+    end
+      
 
 end

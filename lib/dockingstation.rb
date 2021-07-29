@@ -1,9 +1,10 @@
 class DockingStation
-  attr_accessor :bikes, :capacity
+  attr_accessor :bikes, :capacity, :broken_bikes
 
   def initialize(capacity = 20)
     @bikes = []
     @capacity = capacity
+    @broken_bikes = []
   end
 
   def release_bike
@@ -13,11 +14,13 @@ class DockingStation
     end
   end
 
-  def dock_bike(bike)
+  def dock_bike(bike, status = "working")
     if full?
       raise "Docking station is full"
+    elsif status == "broken"
+      @broken_bikes << bike
     else
-    @bikes << bike
+      @bikes << bike
     end
   end
 

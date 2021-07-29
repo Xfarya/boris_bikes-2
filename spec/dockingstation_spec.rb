@@ -42,7 +42,8 @@ describe DockingStation do
       docking_station = DockingStation.new
       # bike2 = docking_station.dock_bike(Bike.new)
     #  20.times { docking_station.dock_bike Bike.new }
-      expect(docking_station.dock_bike Bike.new).to raise_error "Docking station is full" if docking_station.bikes.length >= DEFAULT_CAPACITY
+    p docking_station.capacity
+      expect(docking_station.dock_bike Bike.new).to raise_error "Docking station is full" if docking_station.bikes.length >= docking_station.capacity
     end
 
 end

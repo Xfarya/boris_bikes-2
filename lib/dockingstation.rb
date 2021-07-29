@@ -1,3 +1,5 @@
+DEFAULT_CAPACITY = 20
+
 class DockingStation
   attr_accessor :bikes
 
@@ -23,7 +25,7 @@ class DockingStation
   private 
   
   def full?
-    if @bikes.length >= 20
+    if @bikes.length >= DEFAULT_CAPACITY
       true
     end
   end

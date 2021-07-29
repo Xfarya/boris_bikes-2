@@ -54,5 +54,17 @@ let(:bike) {double :bike}
       expect(docking_station.broken_bikes.last).to eq(bike1)
     end
       
+    it "should collect and deliver broken bikes to garages"
+    docking_station = DockingStation.new
+    docking_station.deliver_broken
+    expect(docking_station.broken_bikes).to eq []
+  end
+
+  it "should collect and deliver working bikes to docking stations"
+  docking_station = DockingStation.new
+  current_number_of_bikes = docking_station.bikes.length
+  docking_station.deliver_working
+  expect(docking_station.bikes.length).to > current_number_of_bikes
+end
 
 end

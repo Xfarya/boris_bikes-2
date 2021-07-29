@@ -1,4 +1,6 @@
 require 'dockingstation'
+require 'vans'
+require 'garages'
 
 describe DockingStation do
 let(:bike) {double :bike}
@@ -43,7 +45,6 @@ let(:bike) {double :bike}
       docking_station = DockingStation.new
       # bike2 = docking_station.dock_bike(Bike.new)
     #  20.times { docking_station.dock_bike Bike.new }
-    p docking_station.capacity
       expect(docking_station.dock_bike double(:bike)).to raise_error "Docking station is full" if docking_station.bikes.length >= docking_station.capacity
     end
 
@@ -54,17 +55,18 @@ let(:bike) {double :bike}
       expect(docking_station.broken_bikes.last).to eq(bike1)
     end
       
-    it "should collect and deliver broken bikes to garages"
-    docking_station = DockingStation.new
-    docking_station.deliver_broken
-    expect(docking_station.broken_bikes).to eq []
-  end
+    it "should collect and deliver broken bikes to garages" do
+      docking_station = DockingStation.new
+      van = Vans.new
+      docking_station.deliver_broken
+      expect(docking_station.broken_bikes).to eq([])
+    end
 
-  it "should collect and deliver working bikes to docking stations"
-  docking_station = DockingStation.new
-  current_number_of_bikes = docking_station.bikes.length
-  docking_station.deliver_working
-  expect(docking_station.bikes.length).to > current_number_of_bikes
-end
+    it "should collect and deliver working bikes to docking stations" do
+      docking_station = DockingStation.new
+      current_number_of_bikes = docking_station.bikes.length
+      docking_station.deliver_working
+      expect(docking_station.bikes.length).to > current_number_of_bikes
+    end
 
 end

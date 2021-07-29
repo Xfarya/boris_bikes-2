@@ -4,7 +4,7 @@ class DockingStation
   def initialize(capacity = 20)
     @bikes = []
     @capacity = capacity
-    @broken_bikes = []
+    @broken_bikes = [Bike.new]
   end
 
   def release_bike
@@ -22,6 +22,19 @@ class DockingStation
     else
       @bikes << bike
     end
+  end
+
+  def deliver_broken
+    raise "There are no broken bikes" if @broken_bikes.length == 0
+    Vans.new.vans_broken.push(@broken_bikes)
+    @broken_bikes = []
+  end
+
+  def deliver_working
+    van = Vans.new
+    van.send_to_garage
+    van.collect_from_garage
+    @bikes << van.vans_working
   end
 
   private 

@@ -1,17 +1,19 @@
 class DockingStation
+  attr_accessor :bikes
 
-<<<<<<< HEAD
-  attr_reader :bike
-=======
-attr_reader :bike
->>>>>>> 6523fc95e22dc328d700cd119de3638dd819b1fc
+  def initialize
+    @bikes = [Bike.new]
+  end
 
   def release_bike
-    Bike.new
+    if @bikes == []
+      raise "No bikes are available"
+    else @bikes.pop
+    end
   end
 
   def dock_bike(bike)
-    @bike = bike
+    @bikes << bike
   end
   
   # def bike

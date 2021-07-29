@@ -37,4 +37,11 @@ describe DockingStation do
       docking_station.dock_bike(Bike.new)
       expect(docking_station.release_bike).to raise_error "No bikes are available" if docking_station.bikes == []
     end
+
+    it "should raise error if dock is full" do
+      docking_station = DockingStation.new
+      # bike2 = docking_station.dock_bike(Bike.new)
+      expect(docking_station.dock_bike(Bike.new)).to raise_error "Docking station is full" if docking_station.bikes.length == 1
+    end
+
 end

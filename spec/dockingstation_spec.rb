@@ -1,12 +1,13 @@
 require 'dockingstation'
 
 describe DockingStation do
-
+let(:bike) {double :bike}
     it { is_expected.to respond_to(:release_bike) }
 
     it 'is working' do
+      allow(bike).to receive(:working?).and_return(true)
       docking_station = DockingStation.new
-      docking_station.dock_bike(double(:bike))
+      docking_station.dock_bike(bike)
       expect(docking_station.release_bike).to respond_to :working?
     end
 

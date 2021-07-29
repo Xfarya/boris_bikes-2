@@ -18,18 +18,26 @@ describe DockingStation do
     end
 
     it 'returns docked bikes' do
-      p DockingStation.new.dock_bike(Bike.new).pop
-      p DockingStation.new.release_bike
-      expect(DockingStation.new.dock_bike(Bike.new).pop).to eq DockingStation.new.release_bike
+      # p DockingStation.new.dock_bike(Bike.new).pop
+      # p DockingStation.new.release_bike
+      docking_station = DockingStation.new
+      docking_station.dock_bike(Bike.new)
+      # p docking_station.bikes
+      # p docking_station.bikes.last
+      # p docking_station.release_bike
+      expect(docking_station.bikes.last).to eq docking_station.release_bike
     end
 
     it 'adds a bike when dock_bike' do
-      DockingStation.new.dock_bike(Bike.new) 
-      expect(bikes.pop).to eq bike
+      docking_station = DockingStation.new
+      bike1 = Bike.new
+      docking_station.dock_bike(bike1) 
+      expect(docking_station.bikes.pop).to eq bike1
     end
 
     it "should raise error if dock is empty" do
-      bikes = []
+      docking_station = DockingStation.new
+      docking_station.bikes = []
       expect(DockingStation.new.release_bike).to raise_error "No bikes are available"
     end
 end
